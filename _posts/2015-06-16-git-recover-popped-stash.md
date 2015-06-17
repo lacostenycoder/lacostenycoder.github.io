@@ -11,27 +11,23 @@ tags: [code, git]
 
 If you ever accidentally pop a stash and need to get it back you can use the following command:
 
-```
-git fsck --no-reflog | awk '/dangling commit/ {print $3}'
-```
+    git fsck --no-reflog | awk '/dangling commit/ {print $3}'
 
 Let's break this down:
 
-```
-git fsck
-```
+    git fsck
+
 This verifies the connectivity of the objects in git's database. when used with the **--no-dangling** option it will show objects that exist but are not reachable from any of the referenced nodes. If you've been working on a project for while this command can take a minute and can show many lines such as:
 
-```
-dangling blob f566b350c38eb57b65f57e9345595b68cb267b9a
-dangling blob 422713302b7d6a8bf67bd8805787baec33ea731a
-dangling blob 43e73cb46b1a6d253c58ac0fcfca25c63f1d658c
-dangling commit fa67c74d56bb36f51afe0243e7272c40d33486ff
-dangling blob 1d681dda9fc534bc27ab8d6ec2222cf1727ffef6
-dangling blob 4aea92f1d5ca8aae13dcb48e68435502ead6863e
-dangling blob 9ceb5696536119cc96dc1458c55f5c7e5249c1db
-dangling blob d1eba665eadae21dc230a467bdbccc8349d71479
-```
+    dangling blob f566b350c38eb57b65f57e9345595b68cb267b9a
+    dangling blob 422713302b7d6a8bf67bd8805787baec33ea731a
+    dangling blob 43e73cb46b1a6d253c58ac0fcfca25c63f1d658c
+    dangling commit fa67c74d56bb36f51afe0243e7272c40d33486ff
+    dangling blob 1d681dda9fc534bc27ab8d6ec2222cf1727ffef6
+    dangling blob 4aea92f1d5ca8aae13dcb48e68435502ead6863e
+    dangling blob 9ceb5696536119cc96dc1458c55f5c7e5249c1db
+    dangling blob d1eba665eadae21dc230a467bdbccc8349d71479
+
 
 Here we're using the **--no-reflog** option which looks only for commits that have been removed from a ref, but are still in that corresponding reflog.
 
@@ -44,9 +40,8 @@ This is linux text processing syntax that allows us to manipulate the output of 
 
 Using the graphical interface can sometimes be helpful at tracking down exactly what you're looking for.  This can get you out of git purgatory when you've been bouncing around multiple branches, stashes, commits and accidentally pop something.  Once you find the missing stash you can simply copy the sha-1 hash and do:
 
-```
-git stash apply <your sha-1 hash>
-```  
+    git stash apply <your sha-1 hash>
+
 and vioala! you've recovered your lost stash!  You may even want to used context menu in gitk to create branches for unreachable commits you may need.
 
 ### References
